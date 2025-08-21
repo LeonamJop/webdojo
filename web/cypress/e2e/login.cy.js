@@ -1,14 +1,9 @@
 describe("Login", () => {
   beforeEach(() => {
-    cy.viewport(1440, 900);
-    cy.visit("http://localhost:3000/");
+    cy.start();
   });
-
   it("Deve logar com sucesso", () => {
-    cy.get("#email").type("papito@webdojo.com");
-    cy.get("#password").type("katana123");
-
-    cy.contains("button", "Entrar").click();
+    cy.submitLoginForm('papito@webdojo.com', 'katana123')
 
     cy.get('[data-cy="user-name"]')
       .should("be.visible")
@@ -25,8 +20,7 @@ describe("Login", () => {
   });
 
   it("Não deve logar com senha inválida", () => {
-    cy.get("#email").type("papito@webdojo.com");
-    cy.get("#password").type("654321");
+    cy.submitLoginForm('papito@webdojo.com', '654321')
 
     cy.contains("button", "Entrar").click();
 
@@ -35,8 +29,7 @@ describe("Login", () => {
   });
 
   it("Não deve logar com e-mail não cadastrado", () => {
-    cy.get("#email").type("404@webdojo.com");
-    cy.get("#password").type("katana123");
+    cy.submitLoginForm('404@webdojo.com', 'katana123')
 
     cy.contains("button", "Entrar").click();
 
