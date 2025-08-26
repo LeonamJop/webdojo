@@ -41,6 +41,23 @@ describe('Formulário de consultoria', () => {
         cy.contains('label', 'CPF')
             .parent().find('input')
             .type('65602530070')
-            .should('have.value', '656.025.300-70')
+            .should('have.value', '656.025.300-70');
+
+        //Campo Checkbox
+        const discoveryChannels = [
+            'Instagram',
+            'LinkedIn',
+            'Udemy',
+            'YouTube',
+            'Indicação de Amigo'
+        ]
+
+        discoveryChannels.forEach((channel)=> {
+            cy.contains('label', channel)
+                .find('input')
+                .check()
+                .should('be.checked')
+        });
+
     });
 });
