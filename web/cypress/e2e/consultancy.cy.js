@@ -73,7 +73,7 @@ describe('Formulário de consultoria', () => {
         
         //Campo Tags
         const techs = ['JavaScript', 'TypeScript', 'React', 'Node.js', 'Cypress'];
-        
+
         techs.forEach((tech) => {
             cy.get('input[placeholder="Digite uma tecnologia e pressione Enter"]')
                 .type(`${tech}{enter}`);
@@ -82,5 +82,17 @@ describe('Formulário de consultoria', () => {
                 .parent().contains('span', tech)
                 .should('be.visible');
         });
+
+        //Submissão do Formulário
+        cy.contains('label', 'termos de uso')
+            .find('input')
+            .check()
+            .should('be.checked');
+        
+        cy.contains('button', 'Enviar formulário')
+            .click();
+        
+        cy.contains('Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.')
+            .should('be.visible');
     });
 });
