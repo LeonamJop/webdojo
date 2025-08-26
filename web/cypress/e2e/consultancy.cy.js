@@ -59,5 +59,12 @@ describe('Formulário de consultoria', () => {
                 .should('be.checked')
         });
 
+        //Campo Upload
+        cy.get('input[type="file"]')
+            .selectFile('./cypress/fixtures/document.pdf', {force: true})
+            .should(($input) => {
+                expect($input[0].files[0].name).to.equal('document.pdf');
+            });
+
     });
 });
