@@ -95,4 +95,32 @@ describe('Formulário de consultoria', () => {
         cy.contains('Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.')
             .should('be.visible');
     });
+
+    //Validação de cores e classes
+    it('Deve verificar os campos obrigatórios', () => {
+        cy.contains("button", "Enviar formulário").click();
+
+        cy.get('#name')
+            .should('have.class', 'border-red-500')
+            .and('have.css', 'border-color', 'rgb(239, 68, 68)');
+        
+        cy.contains("p", "Digite nome e sobrenome")
+            .should("be.visible")
+            .and("have.class", "text-red-400")
+            .and('have.css', 'color', 'rgb(248, 113, 113)');
+
+        cy.get('#email')
+            .should('have.class', 'border-red-500')
+            .and('have.css', 'border-color', 'rgb(239, 68, 68)');
+
+        cy.contains("p", "Informe um email válido")
+            .should("be.visible")
+            .and("have.class", "text-red-400")
+            .and('have.css', 'color', 'rgb(248, 113, 113)');
+
+        cy.contains("p", "Você precisa aceitar os termos de uso")
+            .should("be.visible")
+            .and("have.class", "text-red-400")
+            .and('have.css', 'color', 'rgb(248, 113, 113)');
+    });
 });
