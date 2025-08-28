@@ -5,7 +5,7 @@ describe('Formulário de consultoria', () => {
         cy.goTo('Formulários', 'Consultoria');
     });
 
-    it.only('Deve solicitar consultoria individual', () => {
+    it('Deve solicitar consultoria individual', () => {
         //Campo Nome
         cy.get('input[placeholder="Digite seu nome completo"]')
             .type('Leonam Silva');
