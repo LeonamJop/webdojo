@@ -97,29 +97,43 @@ describe('Formulário de consultoria', () => {
     });
 
     //Validação de cores e classes
-    it('Deve verificar os campos obrigatórios', () => {
+    it.only('Deve verificar os campos obrigatórios', () => {
         cy.contains("button", "Enviar formulário").click();
 
+        //Campo Nome Completo
         cy.get('#name')
             .should('have.class', 'border-red-500')
             .and('have.css', 'border-color', 'rgb(239, 68, 68)');
-        
-        cy.contains("p", "Digite nome e sobrenome")
+
+            //XPath:label[text()="Nome Completo *"]/..//p
+        cy.contains("label", "Nome Completo")
+            .parent()
+            .find("p")
             .should("be.visible")
+            .and('have.text', 'Campo obrigatório')
             .and("have.class", "text-red-400")
             .and('have.css', 'color', 'rgb(248, 113, 113)');
 
+        //Campo E-mail
         cy.get('#email')
             .should('have.class', 'border-red-500')
             .and('have.css', 'border-color', 'rgb(239, 68, 68)');
 
-        cy.contains("p", "Informe um email válido")
+            //XPath:label[text()="Email *"]/..//p
+        cy.contains("label", "Email")
+            .parent()
+            .find("p")
             .should("be.visible")
+            .and('have.text', 'Campo obrigatório')
             .and("have.class", "text-red-400")
             .and('have.css', 'color', 'rgb(248, 113, 113)');
 
-        cy.contains("p", "Você precisa aceitar os termos de uso")
+        //Termos de Uso
+        cy.contains("label", "termos de uso")
+            .parent()
+            .find("p")
             .should("be.visible")
+            .and('have.text', 'Você precisa aceitar os termos de uso')
             .and("have.class", "text-red-400")
             .and('have.css', 'color', 'rgb(248, 113, 113)');
     });
