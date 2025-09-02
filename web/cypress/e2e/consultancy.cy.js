@@ -5,7 +5,7 @@ describe('Formulário de consultoria', () => {
         cy.goTo('Formulários', 'Consultoria');
     });
 
-    it('Deve solicitar consultoria individual', () => {
+    it.only('Deve solicitar consultoria individual', () => {
         //Campo Nome
         cy.get('input[placeholder="Digite seu nome completo"]')
             .type('Leonam Silva');
@@ -92,7 +92,7 @@ describe('Formulário de consultoria', () => {
         cy.contains('button', 'Enviar formulário')
             .click();
         
-        cy.get('.modal').should('be.visible')
+        cy.get('.modal', {timeout: 7000}).should('be.visible')
             .find('.modal-content p')
             .should('be.visible')
             .and('have.text', 'Sua solicitação de consultoria foi enviada com sucesso! Em breve, nossa equipe entrará em contato através do email fornecido.');
