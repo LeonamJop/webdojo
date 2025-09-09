@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "serve -s dist -p 3000"
+    "dev": "serve -s dist -p 3000",
+    "cy": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "serve": "^14.2.4"
